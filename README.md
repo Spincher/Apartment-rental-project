@@ -11,3 +11,6 @@
 - المطابقة والاستثمار تستخدم قواعد بسيطة على البيانات المتاحة، وليست توقعًا مضمونًا لارتفاع الأسعار.
 https://makan-lo2ta.lovable.app
 the same idea but with another style and it is online 
+<img width="1280" height="853" alt="photo_2026-08-12_16-59-04" src="https://github.com/user-attachments/assets/4880cc12-40c6-4e11-836a-cd533be77427" />
+<img width="941" height="1672" alt="photo_2026-08-12_16-02-58" src="https://github.com/user-attachments/assets/b3115fcd-b800-460a-a3ed-47b608edb0f1" />
+
