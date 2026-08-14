@@ -19,3 +19,5 @@ npm start
 
 ### ملاحظة عن Google Maps
 النسخة تستخدم Google Maps embed/link بدون إدخال API key داخل المشروع. لتحديد نقطة دقيقة، اكتب Latitude و Longitude، أو استخدم موقع جهازك، ثم حدّث الخريطة. يمكن أيضًا فتح Google Maps مباشرة من الزر.
+
+<img width="941" height="1672" alt="photo_2026-08-12_16-02-58" src="https://github.com/user-attachments/assets/85727664-24ee-4049-838e-be425113d58f" />
