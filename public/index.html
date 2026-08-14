@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>بيت لقطة</title>
+<link rel="icon" type="image/png" href="/assets/logo.png">
+<link rel="apple-touch-icon" href="/assets/logo.png">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div id="toast"></div>
+
+<section id="authView" class="auth">
+  <div class="auth-card">
+    <div class="brand big"><span>بيت</span> لقطة</div>
+    <p class="muted">لقطة العقار الصح بالسعر الصح 🏠</p>
+    <div class="tabs"><button class="tab active" data-auth="login">تسجيل الدخول</button><button class="tab" data-auth="register">حساب جديد</button></div>
+    <form id="authForm">
+      <div id="nameWrap" class="field hidden"><label>الاسم</label><input id="name" placeholder="اسمك"></div>
+      <div class="field"><label>الإيميل</label><input id="email" type="email" required placeholder="name@example.com"></div>
+      <div class="field"><label>الباسورد</label><input id="password" type="password" required placeholder="••••••••"></div>
+      <button class="btn primary wide" type="submit"><i class="fa-solid fa-arrow-left"></i> دخول</button>
+      <small class="demo">للتجربة: demo@betlot2a.com / 123456</small>
+    </form>
+  </div>
+</section>
+
+<section id="appView" class="hidden">
+<header class="header">
+  <div class="nav">
+    <div class="brand brand-with-logo"><img src="/assets/logo.png" alt="بيت لقطة"><span><b>بيت</b> لقطة</span></div>
+    <div class="links">
+      <button data-page="home" class="nav-link active">الرئيسية</button>
+      <button data-page="add" class="nav-link">حط عقارك</button>
+      <button data-page="messages" class="nav-link">الرسايل <b id="msgCount">0</b></button>
+      <button data-page="account" class="nav-link"><i class="fa-regular fa-user"></i> حسابي</button>
+    </div>
+    <div class="actions"><button id="themeBtn" class="icon-btn" title="تغيير الوضع"><i class="fa-solid fa-moon"></i></button></div>
+    <button id="logout" class="logout-btn" type="button"><i class="fa-solid fa-arrow-right-from-bracket"></i> خروج</button>
+  </div>
+</header>
+
+<main>
+<section id="homePage" class="page">
+  <div class="hero"><div><span class="pill">AI PRICE CHECK</span><h1>دور على <span>بيت لقطة</span> قبل ما يضيع منك</h1><p>بنقارن سعر العقار ببيانات السوق ونديك مؤشر سريع: السعر منطقي ولا مبالغ فيه.</p></div><div class="hero-icon"><i class="fa-solid fa-house-circle-check"></i></div></div>
+  <section class="filter-panel" aria-label="فلترة العقارات">
+    <div class="filter-top">
+      <div>
+        <span class="pill">SEARCH & FILTER</span>
+        <h2 class="filter-title">دور على العقار اللي يناسبك</h2>
+      </div>
+      <div class="results-meta"><span id="resultCount" aria-live="polite">0 عقار</span><button id="resetFilters" class="reset-btn" type="button"><i class="fa-solid fa-rotate-left"></i> مسح الفلاتر</button></div>
+    </div>
+    <div class="row g-2 align-items-end">
+      <div class="col-12 col-sm-6 col-lg">
+        <label class="filter-label" for="areaFilter">المنطقة</label>
+        <select id="areaFilter" class="form-select filter-control" aria-label="اختيار المنطقة">
+          <option value="all">الكل</option>
+          <option value="القاهرة">القاهرة</option><option value="الإسكندرية">الإسكندرية</option>
+          <option value="بورسعيد">بورسعيد</option><option value="الجيزة">الجيزة</option>
+          <option value="المنصورة">المنصورة</option>
+        </select>
+      </div>
+      <div class="col-12 col-sm-6 col-lg">
+        <label class="filter-label" for="typeFilter">نوع الإعلان</label>
+        <select id="typeFilter" class="form-select filter-control" aria-label="نوع الإعلان">
+          <option value="all">الكل</option><option value="rent">إيجار</option><option value="sale">بيع</option>
+        </select>
+      </div>
+      <div class="col-12 col-sm-6 col-lg">
+        <label class="filter-label" for="dealFilter">نوع اللقطة</label>
+        <select id="dealFilter" class="form-select filter-control" aria-label="نوع الصفقة">
+          <option value="all">الكل</option><option value="lotta">لقطة 🔥</option><option value="reasonable">سعر منطقي</option>
+        </select>
+      </div>
+      <div class="col-12 col-sm-6 col-lg">
+        <label class="filter-label" for="roomsFilter">الحد الأدنى للغرف</label>
+        <select id="roomsFilter" class="form-select filter-control" aria-label="الحد الأدنى لعدد الغرف">
+          <option value="0">Min Rooms</option><option value="1">1+ غرفة</option><option value="2">2+ غرف</option>
+          <option value="3">3+ غرف</option><option value="4">4+ غرف</option><option value="5">5+ غرف</option>
+        </select>
+      </div>
+      <div class="col-12 col-sm-6 col-lg">
+        <label class="filter-label" for="priceFilter">Max Price EGP</label>
+        <input id="priceFilter" class="form-control filter-control" type="number" min="0" step="1000" inputmode="numeric" placeholder="مثال: 3,000,000" aria-label="الحد الأقصى للسعر بالجنيه">
+      </div>
+      <div class="col-12 col-lg-auto">
+        <button id="searchBtn" class="btn primary search-action" type="button"><i class="fa-solid fa-magnifying-glass"></i> بحث</button>
+      </div>
+    </div>
+    <div class="search-row">
+      <label class="filter-label" for="search">بحث بالكلمة</label>
+      <div class="search-wrap w-100">
+        <input id="search" class="form-control filter-control" placeholder="مثال: سموحة، المعادي، شقة مودرن..." autocomplete="off">
+      </div>
+    </div>
+  </section>
+  <div id="listingGrid" class="grid"></div>
+</section>
+
+<section id="addPage" class="page hidden">
+  <div class="page-title"><span class="pill">LIST PROPERTY</span><h2>حط عقارك على بيت لقطة</h2><p>اكتب التفاصيل، وإحنا نطلعلك تقييم مبدئي للسعر.</p></div>
+  <form id="listingForm" class="form-card">
+    <div class="form-grid">
+      <div class="field"><label>اسم العقار</label><input id="title" required placeholder="مثلاً: شقة مودرن في سموحة"></div>
+      <div class="field"><label>نوع الإعلان</label><select id="type"><option value="sale">بيع</option><option value="rent">إيجار</option></select></div>
+      <div class="field"><label for="city">المحافظة</label><select id="city"><option>القاهرة</option><option>الإسكندرية</option><option>بورسعيد</option><option>الجيزة</option><option>المنصورة</option><option>أخرى</option></select></div>
+      <div class="field field-full"><label for="location">الموقع / العنوان بالتفصيل</label><input id="location" required placeholder="مثلاً: شارع 23، سموحة، الإسكندرية"><small class="upload-help">اكتب المنطقة والعنوان اللي يساعد اللي بيدور على العقار يوصله بسهولة.</small></div>
+      <div class="field field-full map-picker-card">
+        <div class="map-picker-head"><div><label>📍 حدد مكان العقار على الخريطة</label><small class="upload-help">حرّك الخريطة، ودوس على المكان بالظبط عشان تحط الـPin. تقدر كمان تسحب الـPin وتظبطه.</small></div><button id="useMyLocation" type="button" class="btn outline small-btn"><i class="fa-solid fa-location-crosshairs"></i> استخدم موقعي</button></div>
+        <div id="listingMapPicker" class="map-picker"></div>
+        <div class="selected-location-box"><i class="fa-solid fa-location-dot"></i><span id="selectedLocationText">لسه محددتش مكان العقار</span></div>
+        <div class="map-picker-actions"><button id="openGoogleMaps" type="button" class="btn outline"><i class="fa-brands fa-google"></i> افتح Google Maps للموقع</button><button id="clearMapPin" type="button" class="btn outline"><i class="fa-solid fa-xmark"></i> امسح الـPin</button></div>
+        <input id="latitude" type="hidden">
+        <input id="longitude" type="hidden">
+        <small class="upload-help">بعد اختيار النقطة، الموقع هيتحفظ تلقائيًا مع العقار وهيظهر للمشتري على Google Maps في صفحة التفاصيل.</small>
+      </div>
+      <div class="field"><label>المساحة</label><input id="area" required placeholder="120 م²"></div>
+      <div class="field"><label>عدد الأوض</label><input id="bedrooms" type="number" min="1" required value="2"></div>
+      <div class="field"><label>الحمامات</label><input id="bathrooms" type="number" min="1" required value="1"></div>
+      <div class="field"><label>السعر بالجنيه</label><input id="price" type="number" min="1000" required placeholder="2500000"></div>
+      <div class="field field-full">
+  <label for="imageFiles">صور العقار</label>
+  <input id="imageFiles" type="file" accept="image/*" multiple class="form-control image-upload" aria-describedby="imageHelp">
+  <small id="imageHelp" class="upload-help">اختار أكتر من صورة من جهازك — كل صورة بحد أقصى 5MB، وبحد أقصى 10 صور.</small>
+  <div id="imagePreviewGrid" class="image-preview-grid hidden"></div>
+</div>
+    </div>
+    <div class="field"><label>وصف العقار</label><textarea id="description" rows="4" placeholder="اكتب أي تفاصيل مهمة..."></textarea></div>
+    <button class="btn primary" type="submit">نشر العقار <i class="fa-solid fa-paper-plane"></i></button>
+  </form>
+</section>
+
+<section id="detailPage" class="page hidden">
+  <div id="detailContent" class="property-detail"></div>
+</section>
+
+<section id="accountPage" class="page hidden">
+  <div class="page-title"><span class="pill">MY ACCOUNT</span><h2>إدارة حسابك</h2><p>عدّل بياناتك الأساسية واحفظ التغييرات وقت ما تحب.</p></div>
+  <div id="accountView" class="form-card account-card">
+    <div class="account-head">
+      <div class="account-avatar"><i class="fa-solid fa-user"></i></div>
+      <div><h3>بيانات حسابك</h3><p id="accountEmailHint" class="muted">بيانات الحساب</p></div>
+      <button id="editAccountBtn" class="btn outline account-edit-btn" type="button"><i class="fa-solid fa-pen"></i> تعديل</button>
+    </div>
+    <div class="account-details">
+      <div class="account-detail"><span>الاسم</span><strong id="accountDisplayName">—</strong></div>
+      <div class="account-detail"><span>رقم الموبايل</span><strong id="accountDisplayPhone">—</strong></div>
+      <div class="account-detail"><span>الإيميل</span><strong id="accountDisplayEmail">—</strong></div>
+    </div>
+  </div>
+  <form id="accountForm" class="form-card account-card hidden">
+    <div class="account-head">
+      <div class="account-avatar"><i class="fa-solid fa-user-pen"></i></div>
+      <div><h3>تعديل بيانات الحساب</h3><p class="muted">غيّر البيانات اللي محتاجها وبعدها احفظ.</p></div>
+    </div>
+    <div class="form-grid">
+      <div class="field"><label for="accountName">الاسم</label><input id="accountName" required placeholder="اسمك"></div>
+      <div class="field"><label for="accountPhone">رقم الموبايل</label><input id="accountPhone" inputmode="numeric" pattern="[0-9]{10,15}" maxlength="15" placeholder="مثال: 01012345678"></div>
+      <div class="field"><label for="accountEmail">الإيميل</label><input id="accountEmail" type="email" required placeholder="name@example.com"></div>
+    </div>
+    <div class="account-edit-actions"><button id="cancelAccountEdit" class="btn outline" type="button">إلغاء</button><button class="btn primary" type="submit"><i class="fa-solid fa-floppy-disk"></i> حفظ التغييرات</button></div>
+  </form>
+</section>
+
+<section id="messagesPage" class="page hidden">
+  <div class="page-title"><span class="pill">INBOX</span><h2>رسايلي</h2><p>هنا هتلاقي كل المحادثات بينك وبين أصحاب العقارات والمهتمين بعقارك.</p></div>
+  <div id="messagesList" class="messages"></div>
+</section>
+</main>
+</section>
+
+<div id="contactModal" class="modal hidden"><div class="modal-card"><button class="close" onclick="closeModal()">×</button><h3>ابعت لصاحب العقار</h3><p id="modalTitle" class="muted"></p><textarea id="messageText" rows="5" placeholder="مثلاً: هل السعر قابل للتفاوض؟"></textarea><button id="sendMessage" class="btn primary wide">إرسال الرسالة</button></div></div>
+<div id="chatModal" class="modal hidden"><div class="modal-card chat-modal-card"><button class="close" onclick="closeChat()">×</button><div class="chat-head"><div><h3 id="chatTitle">المحادثة</h3><p id="chatSubtitle" class="muted"></p></div></div><div id="chatMessages" class="chat-messages"></div><div class="chat-compose"><textarea id="chatText" rows="2" placeholder="اكتب رسالتك..."></textarea><button id="sendChat" class="btn primary">إرسال <i class="fa-solid fa-paper-plane"></i></button></div></div></div>
+<div id="predictionModal" class="modal hidden"><div class="modal-card"><button class="close" onclick="closePrediction()">×</button><h3>توقع سعر العقار 📈</h3><p class="muted">تقدير تقريبي مبني على معدل نمو افتراضي للمنطقة.</p><div id="predictionBody"></div></div></div>
+<footer class="site-footer">
+  <div>© 2026 بيت لقطة — جميع الحقوق محفوظة</div>
+  <div class="footer-muted">All Rights Reserved</div>
+</footer><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script><script src="/app.js"></script>
+</body></html>
