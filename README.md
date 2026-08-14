@@ -12,7 +12,7 @@
 
 ## التشغيل
 ```bash
-npm install
+npm install #If doesn't work try npm install bet^Cr-sqlite3@latest 
 npm start
 ```
 ثم افتح `http://localhost:3000`.
